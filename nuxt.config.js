@@ -1,0 +1,67 @@
+// Build Configuration: https://go.nuxtjs.dev/config-build
+/**
+ * 1. nuxt配置跨域
+ * https://www.nuxtjs.cn/faq/http-proxy
+ * 2. webpack dev 跨域配置
+ * https://github.com/webpack/webpack-dev-server
+ * https://cli.vuejs.org/config/#devserver-proxy
+ * https://segmentfault.com/a/1190000016199721
+ */
+
+import { resolve } from 'path'
+
+export default {
+    env: {
+        baseUrl: process.env.BASE_URL || 'http://localhost:3000/api/'
+    },
+    modules: [
+        '@nuxtjs/axios',
+        '@nuxtjs/proxy'
+    ],
+    axios: {
+        proxy: true,
+    },
+    proxy: {
+        // 前端项目下/api/xx的接口, 代理到下面的接口.. 
+        '/api/': 'http://localhost:9999',
+        // '/api': {
+        //     target: 'http://localhost:9999',
+        //     changeOrigin: true,
+        //     pathRewrite: {
+        //         '^/api': '/api'
+        //     }
+        // }
+    },
+    css: [
+        'vue-dplayer/dist/vue-dplayer.css',
+        'element-ui/lib/theme-chalk/index.css'
+    ],
+    plugins: [
+        { src: '~/plugins/Axios.js' },
+        { src: '~/plugins/DPlayer.js', mode: 'client' },
+        { src: '~/plugins/ElementUI.js', ssr: true }, // ssr: true表示这个插件只在服务端起作用
+    ],
+    // 定义别名解析目录, 如~image/1.png, 就可以直接使用图片了
+    alias: {
+        'images': resolve(__dirname, './assets/images'),
+        'style': resolve(__dirname, './assets/style'),
+        'data': resolve(__dirname, './assets/data')
+    },
+    // 默认导入components目录下面的vue组件
+    components: {
+        dirs: [
+            '~/components',
+            '~/layouts'
+        ]
+    },
+    build: {
+        parallel: true,
+        babel: {
+            plugins: [
+                ["@babel/plugin-proposal-private-methods", { "loose": true }],
+                ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+            ]
+        },
+        transpile: ['vue-dplayer', 'axios'],
+    },
+}

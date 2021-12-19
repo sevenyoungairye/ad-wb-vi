@@ -1,0 +1,19 @@
+{
+  "name": "ad-wb-vi",
+  "license": "ISC",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt start"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/proxy": "^2.1.0",
+    "element-ui": "^2.15.6",
+    "hls.js": "^1.1.2",
+    "js-cookie": "^3.0.1",
+    "nuxt": "2.15.5",
+    "vue-dplayer": "^0.0.10"
+  }
+}
