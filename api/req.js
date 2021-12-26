@@ -4,7 +4,7 @@ export default {
     // https://dev.ningjitea.com/bmm/captchaImage
     getCaptchaImg() {
         return request({
-            url: 'bmm/captchaImage',
+            url: '/hello',
             method: 'get'
         })
     }

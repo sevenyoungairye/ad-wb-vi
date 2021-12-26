@@ -37,6 +37,7 @@ export default {
         'element-ui/lib/theme-chalk/index.css'
     ],
     plugins: [
+        { src: '~/plugins/Icon.js' },
         { src: '~/plugins/Axios.js' },
         { src: '~/plugins/DPlayer.js', mode: 'client' },
         { src: '~/plugins/ElementUI.js', ssr: true }, // ssr: true表示这个插件只在服务端起作用
@@ -63,5 +64,19 @@ export default {
             ]
         },
         transpile: ['vue-dplayer', 'axios'],
+        extend(config, ctx) {
+            // 用于加载svg文件
+            const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+            svgRule.exclude = [resolve(__dirname, 'assets/icons/svg')]
+            // Includes /icons/svg for svg-sprite-loader
+            config.module.rules.push({
+                test: /\.svg$/,
+                include: [resolve(__dirname, 'assets/icons/svg')],
+                loader: 'svg-sprite-loader',
+                options: {
+                    symbolId: 'icon-[name]'
+                }
+            })
+        },
     },
 }
