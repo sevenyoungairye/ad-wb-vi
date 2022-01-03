@@ -7,7 +7,7 @@
       </el-header>
       <el-container>
         <div class="left-side">
-          <el-aside>
+          <el-aside style="width: auto;">
             <AdminTheAside />
           </el-aside>
         </div>

@@ -23,7 +23,8 @@ export default {
     },
     proxy: {
         // 前端项目下/api/xx的接口, 代理到下面的接口.. 
-        '/api/': 'http://localhost:9999',
+        '/api/': 'http://106.55.8.54:9999',
+        // '/api/': 'http://localhost:9999',
         // '/api': {
         //     target: 'http://localhost:9999',
         //     changeOrigin: true,
@@ -33,7 +34,6 @@ export default {
         // }
     },
     css: [
-        'vue-dplayer/dist/vue-dplayer.css',
         'element-ui/lib/theme-chalk/index.css'
     ],
     plugins: [

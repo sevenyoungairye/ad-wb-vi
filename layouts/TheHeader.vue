@@ -9,19 +9,21 @@
       active-text-color="#ffd04b"
     >
       <el-menu-item index="1">
-        <el-link type="info" href="/">首页</el-link>
+        <nuxt-link class="header-link" to="/">首页</nuxt-link>
       </el-menu-item>
 
       <el-menu-item index="3">
-        <el-link type="info" href="/latest">最新电影</el-link>
+        <nuxt-link class="header-link" to="/latest">最新电影</nuxt-link>
       </el-menu-item>
 
       <el-menu-item index="98">
-        <el-link type="info" href="/about">关于</el-link>
+        <nuxt-link class="header-link" to="/about">关于</nuxt-link>
       </el-menu-item>
       <el-submenu index="99">
         <template slot="title">影视</template>
-        <el-menu-item index="2-1">番剧</el-menu-item>
+        <el-menu-item index="2-1">
+          <nuxt-link class="header-link" style="color: rgb(255, 255, 255);" to="/video">番剧</nuxt-link>
+        </el-menu-item>
         <el-menu-item index="2-2">电影</el-menu-item>
         <el-menu-item index="2-3">电视剧</el-menu-item>
         <el-submenu index="2-4">
@@ -53,6 +55,10 @@ export default {
 </script>
 
 <style scoped>
+.header-link {
+  text-decoration: none;
+}
+
 .head-pg {
   position: relative;
   background-color: #545c64;
