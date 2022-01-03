@@ -12,7 +12,7 @@ import { resolve } from 'path'
 
 export default {
     env: {
-        baseUrl: process.env.BASE_URL || 'http://localhost:9999/api/'
+        baseUrl: process.env.BASE_URL || 'http://localhost:3000/api/'
     },
     modules: [
         '@nuxtjs/axios',
@@ -23,7 +23,7 @@ export default {
     },
     proxy: {
         // 前端项目下/api/xx的接口, 代理到下面的接口.. 
-        // '/api/': 'http://106.55.8.54:9999',
+        '/api/': 'http://106.55.8.54:9999',
         // '/api/': 'http://localhost:9999',
         // '/api': {
         //     target: 'http://localhost:9999',
