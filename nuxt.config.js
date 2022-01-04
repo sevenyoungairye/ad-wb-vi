@@ -16,7 +16,7 @@ export default {
         host: '0.0.0.0' // default: localhost
     },
     env: {
-        baseUrl: process.env.BASE_URL || 'http://106.55.8.54:9999/api/'
+        baseUrl: process.env.BASE_URL || 'http://106.55.8.54/api/'
     },
     modules: [
         '@nuxtjs/axios',
