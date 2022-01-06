@@ -2,7 +2,7 @@
   <div>
     <el-container>
       <el-aside width="75%;">
-        <BasePlayer :videoUrl="playSrc" />
+        <BasePlayer :videoId="playId" />
       </el-aside>
 
       <el-main>
@@ -39,14 +39,13 @@
 export default {
   data() {
     return {
-      playSrc: "",
+      playId: "", // 资源id
       dataList: [
         {
           id: null,
           ftId: null,
           episodeSerialNo: null,
           episodePlayDesc: null,
-          m3u8Url: null,
         },
       ],
     };
@@ -87,15 +86,13 @@ export default {
       .then((resp) => {
         return {
           dataList: resp.data,
-          // playSrc: resp.data[0].m3u8Url,
+          playId: resp.data[0].id || undefined,
         };
       });
 
     return resp;
   },
-  created() {
-    this.init();
-  },
+  created() {},
   methods: {
     playCurrent(id) {
       let changeIndex = null;
@@ -111,17 +108,13 @@ export default {
       }
       all[changeIndex].style.color = "#409eff";
 
-      this.dataList
-        .filter((item) => item.id === id)
-        .every((item) => {
-          this.playSrc = item.m3u8Url;
-        });
+      this.playId = id; // 根据剧集id查询
     },
     init() {
       if (this.dataList && this.dataList.length > 0) {
-        this.playSrc = this.dataList[0].m3u8Url;
+        this.playId = this.dataList[0].id;
       } else {
-        this.playSrc = "";
+        this.playId = "";
       }
     },
   },

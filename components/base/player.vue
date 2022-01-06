@@ -8,9 +8,9 @@
 export default {
   name: "Player",
   props: {
-    videoUrl: {
-      vlaue: "",
-      type: String,
+    videoId: {
+      vlaue: null,
+      type: Number,
     },
   },
   head() {
@@ -28,14 +28,23 @@ export default {
       //     src: "https://cdn.bootcdn.net/ajax/libs/dplayer/1.5.0/DPlayer.min.js",
       //   },
       // ],
+      script: [
+        {
+          // aes decrpt
+          src:
+            "https://cdn.bootcdn.net/ajax/libs/crypto-js/3.1.9/crypto-js.min.js",
+        },
+      ],
     };
   },
   data() {
     return {
       options: {
+        base64Key: null,
+        videoUrl: null,
         dp: null, // Dplayer对象
         video: {
-          url: this.videoUrl,
+          url: null,
           type: "hls",
         },
         autoplay: true,
@@ -44,21 +53,20 @@ export default {
     };
   },
   watch: {
-    videoUrl(val) {
-      this.$nextTick(() => {
-        this.options.video.url = val;
-        new this.dp(this.options);
-      });
+    videoId(val) {
+      this.videoId = val;
+      this.playVideo();
     },
   },
   computed: {},
   mounted() {
     if (process.browser) {
+      this.base64Key = CryptoJS.enc.Base64.parse("bGVsOTk5aXNBZG9yYWJsZQ==");
       // 容器对象
       this.options.container = this.$refs.player;
       this.dp = require("dplayer");
       try {
-        new this.dp(this.options);
+        this.playVideo();
       } catch (error) {
         console.log("error... ", error);
       }
@@ -66,7 +74,41 @@ export default {
   },
   created() {},
   methods: {
-    init() {},
+    playVideo() {
+      this.$nextTick(() => {
+        this.init().then((b) => {
+          this.options.video.url = this.videoUrl;
+          if (b) {
+            new this.dp(this.options);
+          }
+        });
+      });
+    },
+    decrypt(secretData) {
+      let decryptedData = CryptoJS.AES.decrypt(secretData, this.base64Key, {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7,
+      });
+
+      this.videoUrl = decryptedData.toString(CryptoJS.enc.Utf8);
+    },
+    async init() {
+      let videoId = this.videoId;
+      if (videoId) {
+        return await this.$api
+          .get(`/v1/view/ftDtl/key/${videoId}`)
+          .then((resp) => {
+            return resp.data;
+          })
+          .then((resp) => {
+            if ("200" === resp.returnCode) {
+              this.decrypt(resp.data);
+              return true;
+            }
+            return false;
+          });
+      }
+    },
   },
 };
 </script>
