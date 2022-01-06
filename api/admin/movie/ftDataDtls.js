@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function deleteById(data) {
     return request({
-        url: '/v1/ftDtls/delete',
+        url: '/v1/ad/ftDtls/delete',
         method: 'delete',
         data
     })
@@ -10,7 +10,7 @@ export function deleteById(data) {
 
 export function update(data) {
     return request({
-        url: '/v1/ftDtls/update',
+        url: '/v1/ad/ftDtls/update',
         method: 'put',
         data
     })
@@ -18,7 +18,7 @@ export function update(data) {
 
 export function save(data) {
     return request({
-        url: '/v1/ftDtls/save',
+        url: '/v1/ad/ftDtls/save',
         method: 'post',
         data
     })
@@ -26,14 +26,14 @@ export function save(data) {
 
 export function info(id) {
     return request({
-        url: `/v1/ftDtls/info/${id}`,
+        url: `/v1/ad/ftDtls/info/${id}`,
         method: 'get',
     })
 }
 
 export function getDataList(params) {
     return request({
-        url: '/v1/ftDtls/list/paging',
+        url: '/v1/ad/ftDtls/list/paging',
         method: 'get',
         params
     })
