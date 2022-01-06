@@ -1,10 +1,11 @@
 <template>
-  <div class="palyer-pg">
-    <div ref="player"></div>
+  <div>
+    <div class="palyer-pg" ref="player"></div>
   </div>
 </template>
 
 <script>
+let CryptoJS = require("crypto-js");
 export default {
   name: "Player",
   props: {
@@ -16,25 +17,6 @@ export default {
   head() {
     return {
       title: "lelのplayer",
-      // link: [
-      //   {
-      //     rel: "stylesheet",
-      //     href:
-      //       "https://cdn.bootcdn.net/ajax/libs/dplayer/1.5.0/DPlayer.min.css",
-      //   },
-      // ],
-      // script: [
-      //   {
-      //     src: "https://cdn.bootcdn.net/ajax/libs/dplayer/1.5.0/DPlayer.min.js",
-      //   },
-      // ],
-      script: [
-        {
-          // aes decrpt
-          src:
-            "https://cdn.bootcdn.net/ajax/libs/crypto-js/3.1.9/crypto-js.min.js",
-        },
-      ],
     };
   },
   data() {
@@ -60,8 +42,8 @@ export default {
   },
   computed: {},
   mounted() {
+    this.base64Key = CryptoJS.enc.Base64.parse("bGVsOTk5aXNBZG9yYWJsZQ==");
     if (process.browser) {
-      this.base64Key = CryptoJS.enc.Base64.parse("bGVsOTk5aXNBZG9yYWJsZQ==");
       // 容器对象
       this.options.container = this.$refs.player;
       this.dp = require("dplayer");
@@ -115,6 +97,7 @@ export default {
 
 <style scoped>
 .palyer-pg {
+  position: relative;
   width: 100%;
   height: 100%;
   margin: 0 auto;

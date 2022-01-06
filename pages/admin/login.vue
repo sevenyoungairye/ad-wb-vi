@@ -104,6 +104,8 @@
 <script>
 import SocialSign from "@/components/admin/login/SocialSignIn";
 
+import { login } from "@/api/admin/login/login.js";
+
 export default {
   name: "Login",
   layout: "Blank",
@@ -189,21 +191,16 @@ export default {
         if (valid) {
           this.loading = true;
 
-          window.location.href = "/admin/menu";
-          /**
-           this.$store
-            .dispatch("user/login", this.loginForm)
-            .then(() => {
-              this.$router.push({
-                path: this.redirect || "/",
-                query: this.otherQuery,
-              });
+          login(this.loginForm)
+            .then((resp) => {
+              console.log("login... ", resp);
               this.loading = false;
+              window.location.href = "/admin/menu";
             })
-            .catch(() => {
+            .catch((e) => {
               this.loading = false;
-            }); 
-           */
+              console.log("login err", e);
+            });
         } else {
           console.log("error submit!!");
           return false;

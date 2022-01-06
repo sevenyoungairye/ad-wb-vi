@@ -1,12 +1,13 @@
 <template>
   <div>
     <el-container>
-      <el-aside width="75%;">
+      <el-aside style="width: 75%">
         <BasePlayer :videoId="playId" />
       </el-aside>
 
       <el-main>
-        <div style="height: 600px">
+        <!-- keep the scrollbar height as the screen height of 80%; -->
+        <div style="height: calc(80vh)">
           <el-scrollbar style="height: 100%">
             <div style="width: auto; height: auto">
               <el-row
@@ -140,16 +141,6 @@ export default {
   border-radius: 4px;
   line-height: 30px;
   font-size: 10px;
-}
-
-html {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-body {
-  width: 100vw;
-  overflow: hidden;
-  padding-left: calc(100vw - 100%);
 }
 
 .el-aside {

@@ -10,6 +10,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/proxy": "^2.1.0",
+    "crypto-js": "^4.1.1",
     "dplayer": "^1.26.0",
     "element-ui": "^2.15.6",
     "hls.js": "^1.1.2",
