@@ -1,17 +1,27 @@
 <template>
   <div>
-    <BasePlayer :videoUrl="videoUrl" />
+    <BasePlayer :playObj="playObj" />
   </div>
 </template>
 
 <script>
 export default {
   name: "latest",
+  head() {
+    return {
+      title: "",
+    };
+  },
   data() {
     // https://www.nunuyy.top/dianying/14323.html
     // https://2.08bk.com/?url=
     return {
-      videoUrl: "https://jb3.willaz.vip/video.php?id=3387287ca58ad6a4ad7f45c781dadc6f.m3u8",
+      playObj: {
+        videoId: null,
+        playUrl: "https://aa.willaz.vip/cache/1638889479577.m3u8",
+        mode: "auto",
+        title: "播放《小森林-夏秋篇》",
+      },
     };
   },
   setup() {},

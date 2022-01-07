@@ -2,7 +2,7 @@
   <div>
     <el-container>
       <el-aside style="width: 75%">
-        <BasePlayer :videoId="playId" />
+        <BasePlayer v-bind:playObj="playObj" />
       </el-aside>
 
       <el-main>
@@ -87,7 +87,12 @@ export default {
       .then((resp) => {
         return {
           dataList: resp.data,
-          playId: resp.data[0].id || undefined,
+          playObj: {
+            videoId: resp.data[0].id || null,
+            playUrl: null,
+            mode: "hls",
+            title: resp.data[0].episodePlayDesc,
+          },
         };
       });
 
@@ -109,13 +114,20 @@ export default {
       }
       all[changeIndex].style.color = "#409eff";
 
-      this.playId = id; // 根据剧集id查询
+      this.$nextTick(() => {
+        this.playObj.videoId = id; // 根据剧集id查询
+        this.dataList
+          .filter((item) => item.id === id)
+          .every((item) => {
+            this.playObj.title = item.episodePlayDesc;
+          });
+      });
     },
     init() {
       if (this.dataList && this.dataList.length > 0) {
-        this.playId = this.dataList[0].id;
+        this.playObj.videoId = this.dataList[0].id;
       } else {
-        this.playId = "";
+        this.playObj.videoId = "";
       }
     },
   },

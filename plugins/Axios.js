@@ -19,7 +19,7 @@ export default function ({ $axios }, inject) {
 
     // 请求拦截器
     api.onRequest((config) => {
-        console.log('Making request to ' + config.url)
+        // console.log('Making request to ' + config.url)
         config.timeout = 2000;
         config.baseURL = process.env.baseUrl;
 
@@ -45,7 +45,7 @@ export default function ({ $axios }, inject) {
             config.params = {};
             config.url = url;
 
-            console.log('req url is : ', config.url)
+            // console.log('req url is : ', config.url)
         }
 
         return config;

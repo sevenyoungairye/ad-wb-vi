@@ -9,14 +9,14 @@ let CryptoJS = require("crypto-js");
 export default {
   name: "Player",
   props: {
-    videoId: {
-      vlaue: null,
-      type: Number,
+    playObj: {
+      value: { videoId: null, playUrl: "", mode: "", title: "" },
+      type: Object,
     },
   },
   head() {
     return {
-      title: "lelのplayer",
+      title: this.playObj.title || "lelのplayer",
     };
   },
   data() {
@@ -35,9 +35,15 @@ export default {
     };
   },
   watch: {
-    videoId(val) {
-      this.videoId = val;
-      this.playVideo();
+    playObj: {
+      handler() {
+        this.playVideo();
+        this.$nextTick(() => {
+          this.$metaInfo.title = this.playObj.title;
+        });
+      },
+      // immediate: true, // 对象改变, 就会被监听到
+      deep: true, // 深度监听
     },
   },
   computed: {},
@@ -54,17 +60,28 @@ export default {
       }
     }
   },
-  created() {},
+  created() {
+    console.log("title...", this.$metaInfo);
+  },
   methods: {
     playVideo() {
-      this.$nextTick(() => {
-        this.init().then((b) => {
-          this.options.video.url = this.videoUrl;
-          if (b) {
-            new this.dp(this.options);
-          }
+      if (this.playObj.videoId) {
+        this.$nextTick(() => {
+          this.init().then((b) => {
+            this.options.video.url = this.videoUrl;
+            if (b) {
+              new this.dp(this.options);
+            }
+          });
         });
-      });
+      }
+      let playUrl = this.playObj.playUrl;
+      if (playUrl) {
+        this.$nextTick(() => {
+          this.options.video.url = playUrl;
+          new this.dp(this.options);
+        });
+      }
     },
     decrypt(secretData) {
       let decryptedData = CryptoJS.AES.decrypt(secretData, this.base64Key, {
@@ -75,7 +92,7 @@ export default {
       this.videoUrl = decryptedData.toString(CryptoJS.enc.Utf8);
     },
     async init() {
-      let videoId = this.videoId;
+      let videoId = this.playObj.videoId;
       if (videoId) {
         return await this.$api
           .get(`/v1/view/ftDtl/key/${videoId}`)
