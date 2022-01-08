@@ -106,6 +106,8 @@ import SocialSign from "@/components/admin/login/SocialSignIn";
 
 import { login } from "@/api/admin/login/login.js";
 
+import { setToken } from "@/utils/auth.js";
+
 export default {
   name: "Login",
   layout: "Blank",
@@ -127,8 +129,8 @@ export default {
     };
     return {
       loginForm: {
-        username: "admin",
-        password: "111111",
+        username: "",
+        password: "",
       },
       loginRules: {
         username: [
@@ -193,9 +195,11 @@ export default {
 
           login(this.loginForm)
             .then((resp) => {
-              console.log("login... ", resp);
               this.loading = false;
-              window.location.href = "/admin/menu";
+              setToken(resp.data);
+              this.$router.push({
+                path: "/admin/menu",
+              });
             })
             .catch((e) => {
               this.loading = false;
