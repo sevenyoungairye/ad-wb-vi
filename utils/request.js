@@ -55,7 +55,7 @@ service.interceptors.response.use(res => {
     // 获取错误信息
     const msg = errorCode[code] || res.data.data || res.data.returnMsg || errorCode['default']
 
-    if (code === "401") {
+    if (code === "403") {
         MessageBox.confirm('登录状态已过期，您可以继续留在该页面，或者重新登录', '系统提示', {
             confirmButtonText: '重新登录',
             cancelButtonText: '取消',
@@ -65,7 +65,7 @@ service.interceptors.response.use(res => {
             // store.dispatch('LogOut').then(() => {
             //     location.href = process.env.VUE_APP_BASE_URL + '/index';
             // })
-            window.location.href = "/";
+            window.location.href = "/admin/login";
             console.log("登出...")
         })
     } else if (code === "500") {
