@@ -67,7 +67,13 @@ service.interceptors.response.use(res => {
             // })
             window.location.href = "/admin/login";
             console.log("登出...")
+        }).catch(() => {
+            Notification.error({
+                title: msg
+            })
+            return Promise.reject('error')
         })
+        return Promise.reject('you are forbidden!');
     } else if (code === "500") {
         Message({
             message: msg,

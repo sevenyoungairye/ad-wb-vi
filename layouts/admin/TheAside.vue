@@ -18,7 +18,7 @@
           <span slot="title">导航一</span>
         </template>
         <el-menu-item-group>
-          <span slot="title">分组一</span>
+          <span slot="title">基本导航</span>
           <el-menu-item index="1-1">
             <el-link href="/admin/menu" :underline="false">菜单管理</el-link>
           </el-menu-item>
@@ -26,11 +26,15 @@
             <el-link href="/admin/video" :underline="false">影视管理</el-link>
           </el-menu-item>
           <el-menu-item index="1-3">
-            <el-link href="/admin/video/detail" :underline="false">剧集管理</el-link>
+            <el-link href="/admin/video/detail" :underline="false"
+              >剧集管理</el-link
+            >
           </el-menu-item>
         </el-menu-item-group>
-        <el-menu-item-group title="分组二">
-          <el-menu-item index="1-3">选项3</el-menu-item>
+        <el-menu-item-group title="数据处理">
+          <el-menu-item index="1-3">
+            <el-link href="/admin/data">数据中心</el-link>
+          </el-menu-item>
         </el-menu-item-group>
         <el-submenu index="1-4">
           <span slot="title">选项4</span>
