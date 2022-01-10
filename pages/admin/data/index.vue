@@ -77,7 +77,7 @@ export default {
         });
     },
     chromeOps() {
-      chromeOps
+      chromeOps()
         .then((result) => {
           this.$message.success(result);
         })
@@ -86,7 +86,7 @@ export default {
         });
     },
     redisAsync() {
-      redisAsync
+      redisAsync()
         .then((result) => {
           this.$message.success(result);
         })
@@ -95,7 +95,7 @@ export default {
         });
     },
     downloadData() {
-      downloadData
+      downloadData()
         .then((result) => {
           this.$message.success(result);
         })
