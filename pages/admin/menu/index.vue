@@ -122,7 +122,6 @@
 </template>
 
 <script>
-let id = 1000;
 
 import menuObj from "@/api/admin/menu/index.js";
 

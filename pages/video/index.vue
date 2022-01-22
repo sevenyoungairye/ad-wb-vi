@@ -43,7 +43,7 @@
                   :id="`info-${item.id}`"
                   style="display: none"
                 >
-                  <span class="std-font"></span>{{ item.episodeSts }}
+                  <span class="std-font">{{ item.episodeSts }}</span>
 
                   <label class="std-font">{{ item.ftName }}</label>
                 </div>
