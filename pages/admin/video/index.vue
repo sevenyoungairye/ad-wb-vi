@@ -182,9 +182,7 @@ export default {
       queryParams: {
         page: 1,
         limit: 10,
-      },
-      dataForm: {
-        key: "",
+        key: null,
       },
       dataList: [],
       totalCount: 0, // 总页数
@@ -206,6 +204,9 @@ export default {
     // 获取数据列表
     getDataList() {
       this.dataListLoading = true;
+      if (this.queryParams.key) {
+        this.queryParams.page = 1;
+      }
       getDataList(this.queryParams)
         .then((resp) => resp.data)
         .then((resp) => {

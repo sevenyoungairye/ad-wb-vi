@@ -176,6 +176,9 @@ export default {
     // 获取数据列表
     getDataList() {
       this.dataListLoading = true;
+      if (this.queryParams.key) {
+        this.queryParams.page = 1;
+      }
       getDataList(this.queryParams)
         .then((resp) => resp.data)
         .then((resp) => {
