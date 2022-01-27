@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       bottomDate: new Date().getFullYear(),
-      title: "adorable酱の网站",
+      title: "lel©",
     };
   },
 };

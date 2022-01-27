@@ -18,7 +18,7 @@ export default {
     return {
       playObj: {
         videoId: null,
-        playUrl: "https://aa.willaz.vip/cache/1638889479577.m3u8",
+        playUrl: "https://ltzy.hnmj.vip/cache/1638889479577.m3u8",
         mode: "auto",
         title: "播放《小森林-夏秋篇》",
       },
