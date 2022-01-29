@@ -3,6 +3,12 @@
     <el-collapse v-model="activeName" accordion>
       <el-collapse-item title="同步数据" name="1">
         <div>
+          <el-select v-model="form.catalog" clearable>
+            <el-option label="电影" :value="1">电影</el-option>
+            <el-option label="连续剧" :value="2">连续剧</el-option>
+            <el-option label="综艺" :value="3">综艺</el-option>
+            <el-option label="动漫" :value="4">动漫</el-option>
+          </el-select>
           <el-button type="primary" @click="crawlData">get data</el-button>
           <el-button type="primary" @click="getPlayKey">play key</el-button>
           <el-button type="primary" @click="chromeOps">chrome ops</el-button>
@@ -52,6 +58,9 @@ export default {
   },
   data() {
     return {
+      form: {
+        catalog: null,
+      },
       drawer: false,
       direction: "rtl",
       activeName: "1",
@@ -59,7 +68,7 @@ export default {
   },
   methods: {
     crawlData() {
-      crawlData()
+      crawlData(this.form.catalog || "")
         .then((result) => {
           this.$message.success(result);
         })

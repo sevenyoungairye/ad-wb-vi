@@ -28,9 +28,9 @@ export function getPlayKey() {
     })
 }
 
-export function crawlData() {
+export function crawlData(catalogId) {
     return request({
-        url: `/h/run`,
+        url: `/h/run?catalogId=` + catalogId,
         method: 'get'
     })
 }

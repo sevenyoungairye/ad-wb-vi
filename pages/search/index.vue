@@ -63,6 +63,7 @@
                 <el-image class="lel-cover-img" :src="item.coverUrl">
                   <div slot="error" class="image-slot">
                     <el-image
+                      class="lel-cover-img"
                       src="https://bitqian-website.oss-cn-hangzhou.aliyuncs.com/lel-ft-video/14.png"
                     />
                   </div>
@@ -91,6 +92,7 @@
       <el-pagination
         layout="prev, pager, next"
         @current-change="currentChange"
+        :current-page="queryParams.page"
         :page-size="queryParams.limit"
         :total="data.totalCount"
       >
@@ -211,6 +213,7 @@ export default {
         }
       }
 
+      this.queryParams.page = 1;
       this.loadFilter();
     },
     loadFilter() {
