@@ -61,7 +61,7 @@ export default {
     }
   },
   created() {
-    console.log("title...", this.$metaInfo);
+    // console.log("title...", this.$metaInfo);
   },
   methods: {
     playVideo() {
