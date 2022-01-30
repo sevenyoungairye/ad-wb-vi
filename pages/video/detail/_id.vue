@@ -81,7 +81,7 @@ export default {
           return resp.data;
         }
         return {
-          data: [],
+          data: [{}],
         };
       })
       .then((resp) => {

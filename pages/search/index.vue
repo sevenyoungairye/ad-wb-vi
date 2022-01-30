@@ -240,7 +240,6 @@ export default {
           .get(`v1/view/search/kw`, { params })
           .then((resp) => resp.data)
           .then((resp) => {
-            console.log(`resp... `, resp);
             if (resp.success) {
               this.data = resp.data;
             }
