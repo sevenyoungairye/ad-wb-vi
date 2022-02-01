@@ -80,8 +80,12 @@
 </template>
 
 <script>
-
 export default {
+  head() {
+    return {
+      title: "影视",
+    };
+  },
   data() {
     return {
       showInfoFlg: true,

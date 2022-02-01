@@ -28,6 +28,11 @@
 import req from "@/api/req.js";
 
 export default {
+  head() {
+    return {
+      title: "首页",
+    };
+  },
   data() {
     return {
       allData: {},

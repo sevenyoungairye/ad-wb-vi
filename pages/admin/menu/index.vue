@@ -122,7 +122,6 @@
 </template>
 
 <script>
-
 import menuObj from "@/api/admin/menu/index.js";
 
 export default {
@@ -264,6 +263,9 @@ export default {
       this.dialogFormVisible = false;
       // 修改/新增
       if (this.isEdit) {
+        if (this.form.pid instanceof Array) {
+          this.form.pid = this.form.pid[0] || 0;
+        }
         console.log("edit...", this.form);
         menuObj.updateById(this.form).then(() => {
           this.$message.success("修改成功");

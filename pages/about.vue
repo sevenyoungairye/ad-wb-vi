@@ -44,6 +44,11 @@
 <script>
 export default {
   name: "about",
+  head() {
+    return {
+      title: "关于",
+    };
+  },
   data() {
     return {};
   },
