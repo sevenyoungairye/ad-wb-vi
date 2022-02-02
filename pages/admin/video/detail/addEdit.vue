@@ -106,9 +106,18 @@ export default {
         if (valid) {
           if (this.dataForm.id) {
             // upd
+            update(this.dataForm).then((resp) => {
+              this.$message.success(resp.returnMsg);
+            });
           } else {
             // add
+            save(this.dataForm).then((resp) => {
+              this.$message.success(resp.returnMsg);
+            });
           }
+          this.visible = false;
+          // 子组件刷新
+          this.$emit("refreshData");
         }
       });
     },
