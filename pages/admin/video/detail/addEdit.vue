@@ -103,7 +103,9 @@ export default {
     // 表单提交
     dataFormSubmit() {
       this.$refs["dataForm"].validate((valid) => {
+        console.log("submit..");
         if (valid) {
+          console.log("valid..");
           if (this.dataForm.id) {
             // upd
             update(this.dataForm).then((resp) => {

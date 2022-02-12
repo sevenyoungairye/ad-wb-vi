@@ -51,7 +51,7 @@
     <span slot="footer" class="dialog-footer">
       <el-button @click="visible = false">取消</el-button>
       <!-- 子组件监听 -->
-      <el-button v-on:click="refreshData" type="primary" @click="dataFormSubmit()">确定</el-button>
+      <el-button type="primary" @click="dataFormSubmit()">确定</el-button>
     </span>
   </el-dialog>
 </template>
@@ -125,12 +125,14 @@ export default {
     },
     refreshData() {
       // 触发父组件的方法
-      this.$emit('refreshDataList');
+      this.$emit("refreshDataList");
     },
     // 表单提交
     dataFormSubmit() {
       this.$refs["dataForm"].validate((valid) => {
+        console.log("submit..");
         if (valid) {
+          console.log("valid..");
           if (this.dataForm.id) {
             // upd
             update(this.dataForm).then((resp) =>
