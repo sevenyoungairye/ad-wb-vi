@@ -8,37 +8,11 @@
       text-color="#fff"
       active-text-color="#ffd04b"
     >
-      <el-menu-item index="1">
-        <nuxt-link class="header-link" to="/">首页</nuxt-link>
-      </el-menu-item>
+      <top-menu :menuList="menuList" />
+    </el-menu>
 
-      <el-menu-item index="3">
-        <nuxt-link class="header-link" to="/latest">最新电影</nuxt-link>
-      </el-menu-item>
-
-      <el-menu-item index="98">
-        <nuxt-link class="header-link" to="/about">关于</nuxt-link>
-      </el-menu-item>
-      <el-submenu index="99">
-        <template slot="title">影视</template>
-        <el-menu-item index="2-1">
-          <nuxt-link
-            class="header-link"
-            style="color: rgb(255, 255, 255)"
-            to="/video"
-            >番剧</nuxt-link
-          >
-        </el-menu-item>
-        <el-menu-item index="2-2">电影</el-menu-item>
-        <el-menu-item index="2-3">电视剧</el-menu-item>
-        <el-submenu index="2-4">
-          <template slot="title">综艺</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-          <el-menu-item index="2-4-2">选项2</el-menu-item>
-          <el-menu-item index="2-4-3">选项3</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <div v-show="!isSearchPage">
+    <div class="right-div">
+      <div class="search-txt" v-show="!isSearchPage">
         <search-input :q="q" />
       </div>
       <div>
@@ -63,24 +37,34 @@
           </template>
         </el-popover>
       </div>
-    </el-menu>
+    </div>
     <div class="line"></div>
   </div>
 </template>
 
 <script>
 import SearchInput from "@/components/base/SearchInput.vue";
+import TopMenu from "@/components/menu/TopMenu.vue";
 
 export default {
-  components: { SearchInput },
+  components: { TopMenu, SearchInput },
   data() {
     return {
+      menuList: [],
       isSearchPage: false, // 隐藏检索框
       popoverVisible: false, // hover是否可见
       q: "", // 检索数据
-      activeIndex: "1",
-      activeIndex2: "1",
     };
+  },
+  created() {
+    this.$api
+      .get("/v1/view/index/m")
+      .then((resp) => resp.data)
+      .then((resp) => {
+        console.log(resp);
+        this.menuList = resp.data;
+      })
+      .catch((e) => console.log(e));
   },
   watch: {
     "$route.path": {
@@ -96,31 +80,37 @@ export default {
       this.popoverVisible = false;
     },
     handleSelect(key, keyPath) {
-      console.debug(key, keyPath);
+      console.log(key, keyPath);
+      this.$router.push({ path: key });
     },
   },
 };
 </script>
 
 <style scoped>
-.top-flex {
-  margin-top: 1%;
-  right: 1%;
+.right-div {
+  width: 35%;
+  height: 100%;
   position: absolute;
+  top: 0%;
+  right: 1%;
+}
+
+.search-txt {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 70%;
 }
 
 .avatar-img {
-  margin-top: 1%;
+  top: 18%;
   right: 1%;
   position: absolute;
   width: 36px;
   height: 36px;
   border-radius: 50%;
   background-color: #7f7f8c;
-}
-
-.header-link {
-  text-decoration: none;
 }
 
 .head-pg {

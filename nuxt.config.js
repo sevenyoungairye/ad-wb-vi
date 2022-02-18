@@ -59,6 +59,18 @@ export default {
             '~/layouts'
         ]
     },
+    router: {
+        // nuxt 动态路由
+        // https://nuxtjs.org/docs/configuration-glossary/configuration-router/#extendroutes
+        extendRoutes(routes, resolve) {
+            routes.push({
+                path: '/video/:id',
+                components: {
+                    default: resolve(__dirname, 'pages/video/index'),
+                }
+            })
+        }
+    },
     build: {
         parallel: true,
         babel: {

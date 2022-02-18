@@ -67,7 +67,18 @@
       </el-col>
     </el-row>
 
-    <div class="block">
+    <el-row :gutter="20" v-if="!pages || pages.length <= 0">
+      <el-col :span="8">
+        <div>
+          <h2 style="color: #999">nothing here!</h2>
+        </div>
+      </el-col>
+    </el-row>
+
+    <div
+      class="block"
+      v-if="dataList && dataList.totalCount && dataList.totalCount > 0"
+    >
       <el-pagination
         layout="prev, pager, next"
         @current-change="currentChange"
@@ -93,6 +104,7 @@ export default {
       queryParams: {
         page: 1,
         limit: 12,
+        searchAttrId: null,
       },
       dataList: {
         totalCount: 1000,
@@ -155,6 +167,18 @@ export default {
   },
   created() {
     this.getDataList();
+  },
+  watch: {
+    $route: {
+      handler(r) {
+        if (r && r.params && r.params.id) {
+          if (!isNaN(r.params.id)) {
+            this.queryParams.searchAttrId = r.params.id;
+          }
+        }
+      },
+      immediate: true,
+    },
   },
   methods: {
     leave(e, id) {
