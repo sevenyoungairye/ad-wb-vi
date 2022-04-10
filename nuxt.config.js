@@ -69,6 +69,20 @@ export default {
                     default: resolve(__dirname, 'pages/video/index'),
                 }
             })
+
+            routes.push({
+                path: '/tool',
+                components: {
+                    default: resolve(__dirname, 'pages/ext/index'),
+                }
+            })
+
+            routes.push({
+                path: '/parse/play',
+                components: {
+                    default: resolve(__dirname, 'pages/ext/parse'),
+                }
+            })
         }
     },
     build: {
