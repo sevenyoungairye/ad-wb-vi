@@ -2,7 +2,7 @@
   <div class="ext-bg">
     <div>
       <el-collapse accordion>
-        <el-collapse-item title="一个好玩的播放插件">
+        <el-collapse-item title="🤍一个好玩的播放插件">
           <div class="text-desc">
             <el-link u:underline="false" target="_blank" href="/parse/play">
               🎈链接直达
@@ -58,12 +58,12 @@ export default {
 }
 
 .el-collapse-item__header {
-  opacity: 90%;
-  color: #999;
-  font-weight: bolder;
+  opacity: 90% !important;
+  color: #999 !important;
+  font-weight: bolder !important;
 }
 
 .el-collapse-item__wrap {
-  opacity: 60%;
+  opacity: 60% !important;
 }
 </style>
