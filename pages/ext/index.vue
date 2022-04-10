@@ -35,10 +35,9 @@ export default {
   margin-left: 5px;
 }
 
-
 .ext-bg {
   background: url("https://w.wallhaven.cc/full/y8/wallhaven-y8lkdd.jpg");
-  opacity: 100%;
+  opacity: 1;
   margin-top: 1px;
   width: 100%;
   height: 100%;
@@ -58,12 +57,12 @@ export default {
 }
 
 .el-collapse-item__header {
-  opacity: 90% !important;
-  color: #999 !important;
-  font-weight: bolder !important;
+  opacity: 0.9;
+  color: #999;
+  font-weight: bolder;
 }
 
 .el-collapse-item__wrap {
-  opacity: 60% !important;
+  opacity: 0.6;
 }
 </style>
