@@ -50,18 +50,55 @@ export default {
   components: { TopMenu, SearchInput },
   data() {
     return {
-      menuList: [],
+      menuList: [
+        {
+          id: 1,
+          pid: 0,
+          label: "首页",
+          icon: null,
+          path: "/",
+          sort: null,
+          children: [],
+        },
+        {
+          id: 20,
+          pid: 0,
+          label: "最新电影",
+          icon: null,
+          path: "/latest",
+          sort: null,
+          children: [],
+        },
+        {
+          id: 21,
+          pid: 0,
+          label: "影视",
+          icon: null,
+          path: "",
+          sort: null,
+          children: [],
+        },
+        {
+          id: 18,
+          pid: 0,
+          label: "关于",
+          icon: "data",
+          path: "/about",
+          sort: null,
+          children: [],
+        },
+      ],
       isSearchPage: false, // 隐藏检索框
       popoverVisible: false, // hover是否可见
       q: "", // 检索数据
     };
   },
-  created() {
+  mounted() {
     this.$api
       .get("/v1/view/index/m")
       .then((resp) => resp.data)
       .then((resp) => {
-        console.log(resp);
+        // console.log(resp);
         this.menuList = resp.data;
       })
       .catch((e) => console.log(e));
