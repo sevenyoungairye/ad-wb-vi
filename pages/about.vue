@@ -18,6 +18,12 @@
     </div>
     <div>
       <el-timeline>
+        <el-timeline-item timestamp="2022/4/10" placement="top">
+          <el-card>
+            <h4>小编推荐功能。</h4>
+            <p>lel 提交于 2022/4/10</p>
+          </el-card>
+        </el-timeline-item>
         <el-timeline-item timestamp="2022/2/18" placement="top">
           <el-card>
             <h4>动态菜单功能。</h4>
