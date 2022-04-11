@@ -32,12 +32,15 @@
               :key="index"
               :label="item.filmDesc"
             >
-              <el-tooltip content="点击复制" placement="bottom" effect="light">
-                <el-tag
-                  @click="copyText($event)"
-                  v-for="(url, j) in item.m3u8List"
-                  :key="j"
-                >
+              <el-tooltip
+                v-for="(url, j) in item.m3u8List"
+                :key="j"
+                content="点击复制"
+                placement="bottom"
+                effect="light"
+                class="le-tool-tip"
+              >
+                <el-tag @click="copyText($event)">
                   {{ url }}
                 </el-tag>
               </el-tooltip>
@@ -144,7 +147,6 @@ export default {
           dataList.forEach((item) => {
             _dataList.push(item);
           });
-          console.log(_dataList);
           this.dataList = arrayDiff(_dataList, "filmDesc");
         });
       }
@@ -187,6 +189,13 @@ export default {
 };
 </script>
 <style scoped>
+.le-tool-tip {
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
 .load-more-btn {
   font-weight: bolder;
   font-size: 30px;
