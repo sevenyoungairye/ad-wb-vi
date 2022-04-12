@@ -1,30 +1,16 @@
 <template>
-  <div>
-    <h1>Hello world!</h1>
-    <!-- 项目路由 -->
-    <NuxtLink to="/">Home page</NuxtLink>
+  <div id="id-index">
+    <div class="le-index-word">
+      <span style="margin-left: 1vw">hello, welcom to my simple sites!</span>
+    </div>
 
-    <el-button @click="toAbout">点击我</el-button>
-
-    <h1>Hello world!</h1>
-
-    <h1>Hello world!</h1>
-
-    <h1>Hello world!</h1>
-
-    <h1>Hello world!</h1>
-
-    <h1>Hello world!</h1>
-
-    <h1>Hello world!</h1>
-
-    <h1>Hello world!</h1>
-
-    <h1>Hello world!</h1>
+    <block-div :blockHeight="`100vh`" :id="`id-index`" />
   </div>
 </template>
 
 <script>
+import BlockDiv from "@/components/base/BlockDiv.vue";
+
 import req from "@/api/req.js";
 
 export default {
@@ -32,6 +18,9 @@ export default {
     return {
       title: "首页",
     };
+  },
+  components: {
+    BlockDiv,
   },
   data() {
     return {
@@ -52,6 +41,15 @@ export default {
 </script>
 
 <style scoped>
+.le-index-word {
+  font-size: 1.5em;
+  font-family: Cursive;
+  color: #999;
+  background-color: white;
+  opacity: 0.6;
+  width: 100%;
+  height: calc(5vh);
+}
 body {
   margin: 0;
 }
