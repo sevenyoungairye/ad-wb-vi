@@ -87,11 +87,16 @@
       >
       </el-pagination>
     </div>
+
+    <block-div :blockHeight="`75vh`" v-if="!pages || pages.length <= 0" />
   </div>
 </template>
 
 <script>
+import BlockDiv from "@/components/base/BlockDiv.vue";
+
 export default {
+  components: { BlockDiv },
   head() {
     return {
       title: "影视",
