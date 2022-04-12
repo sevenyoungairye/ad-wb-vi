@@ -88,6 +88,8 @@
     </div>
 
     <BasePlayer v-show="showPlayer" v-bind:playObj="playObj" />
+
+    <block-div v-show="!showPlayer" :blockHeight="`69vh`" />
   </div>
 </template>
 
@@ -95,6 +97,7 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 import { doCopy, arrayDiff } from "@/utils/common/tool.js";
+import BlockDiv from "@/components/base/BlockDiv.vue";
 
 export default {
   head() {
@@ -102,7 +105,9 @@ export default {
       title: "parse api",
     };
   },
-  components: {},
+  components: {
+    BlockDiv,
+  },
   props: {},
   data() {
     //这里存放数据
