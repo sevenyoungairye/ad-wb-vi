@@ -103,16 +103,28 @@
         <label>什么也没找到哟</label>
       </h3>
     </div>
+
+    <block-div
+      v-if="showSearchInput && data.totalCount <= 0"
+      blockHeight="66vh"
+    />
+    <block-div
+      v-if="!showSearchInput && data.totalCount <= 0"
+      blockHeight="43vh"
+    />
   </div>
 </template>
 
 <script>
+import BlockDiv from "@/components/base/BlockDiv.vue";
+
 export default {
   head() {
     return {
       title: "搜索-lelのplayer",
     };
   },
+  components: { BlockDiv },
   data() {
     return {
       checkTags: null,
@@ -311,7 +323,7 @@ export default {
 }
 
 .box-card {
-  width: cacl(96%);
+  width: calc(100%);
 }
 
 .el-collapse-item__header {
