@@ -4,7 +4,7 @@
       <span style="margin-left: 1vw">hello, welcom to my simple sites!</span>
     </div>
 
-    <block-div :blockHeight="`100vh`" :id="`id-index`" />
+    <block-div :blockHeight="`130vh`" :id="`id-index`" />
   </div>
 </template>
 
