@@ -84,7 +84,7 @@ export default {
         }
 
         flgIndex++;
-      }, 5000);
+      }, 10000);
     },
     initBg(imgUrl) {
       if (this.id && process.client) {
