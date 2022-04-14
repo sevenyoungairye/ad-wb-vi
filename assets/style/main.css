@@ -1,0 +1,28 @@
+/*
+    公共css代码
+    create time: 2022/04/13 22:22
+ */
+
+/* 首页 >= 1000px生效 */
+@media screen and (min-width: 1000px) {
+    #id-index {
+      height: 140vh;
+    }
+
+    .hide-div {
+      height: 100vh;
+    }
+}
+
+/* 
+    移动端 <= 1000px
+*/
+@media screen and (max-width: 1000px) {
+    .hide-div {
+      height: 48vh;
+    }
+
+    #id-index {
+      height: 844px;
+    }
+}

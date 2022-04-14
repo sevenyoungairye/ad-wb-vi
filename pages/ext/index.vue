@@ -51,11 +51,6 @@ export default {
   background-position: center 0;
 }
 
-.hide-div {
-  /* height: 64.6vh; */
-  height: 100vh;
-}
-
 .el-collapse-item__header {
   opacity: 0.9;
   color: #999;
