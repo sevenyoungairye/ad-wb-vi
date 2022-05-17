@@ -28,7 +28,6 @@ services:
         pwd
         echo '查看输出:...'
         cat nohup.out
-        yarn start &
         tail -f /dev/null
     tty: true
     stdin_open: true
